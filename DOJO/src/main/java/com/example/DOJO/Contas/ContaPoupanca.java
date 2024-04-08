@@ -13,16 +13,16 @@ public class ContaPoupanca extends Conta {
         super(idConta, idUsuario, 0); 
         this.dataAbertura = new Date();
         this.saldo = depositoInicial; 
-
     }
-    
+
     @Override
     public void Deposito(double valor) {
-        if (valor <= 0) {
-            throw new IllegalArgumentException("Valor inválido para depósito.");
+        if (valor > depositoInicial) {
+            saldo += valor;
+            System.out.println("Depósito efetuado com sucesso!");
+        } else {
+            System.out.println("Depósito mínimo é de R$ 50,00.");
         }
-        this.saldo += valor;
-        System.out.println("Depósito efetuado com sucesso!");
     }
 
     @Override
