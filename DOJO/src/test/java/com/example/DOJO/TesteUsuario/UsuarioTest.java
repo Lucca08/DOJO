@@ -48,6 +48,7 @@ public class UsuarioTest {
         Conta conta4 = new ContaCorrente(4L, usuario.getIdDoUSuario(), 4000);
         usuario.adicionarConta(conta4); 
         assertEquals(3, usuario.getContas().size());
+    
     }
 
 
