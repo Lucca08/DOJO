@@ -1,6 +1,9 @@
 package com.example.DOJO.Contas;
 
+import java.time.LocalDate;
 import java.util.Date;
+
+import org.springframework.cglib.core.Local;
 
 import com.example.DOJO.Model.Conta;
 
@@ -8,11 +11,11 @@ public class ContaInvestimento extends Conta {
 
     private final double depositoInicial = 1000;
     private final double taxaRendimento = 0.10;
-    private Date dataAbertura;
+    private LocalDate dataAbertura;
 
     public ContaInvestimento(Long idConta, Long idUsuario, double saldo) {
         super(idConta, idUsuario, saldo);
-        this.dataAbertura = new Date();
+        this.dataAbertura = LocalDate.now();
     }
 
     @Override
@@ -24,27 +27,29 @@ public class ContaInvestimento extends Conta {
 
     @Override
     public void Saque(double valor) {
-        if (dataAbertura == null) {
-            System.out.println("A conta de investimento ainda não foi aberta.");
-            return;
-        }
+        LocalDate dataAtual = LocalDate.now();
+        long dias = dataAbertura.until(dataAtual).getDays();
 
-        Date dataAtual = new Date();
-        long diferenca = dataAtual.getTime() - dataAbertura.getTime();
-        long dias = diferenca / (1000 * 60 * 60 * 24);
+        rendimento();
 
         if (dias < 1) {
             System.out.println("Não é possível sacar antes de 1 dia do primeiro depósito.");
             return;
         }
-
-        double saldoAtualizado = saldo + saldo * taxaRendimento * dias;
-
-        if (saldoAtualizado >= valor) {
-            saldo = saldoAtualizado - valor;
-            System.out.println("Saque efetuado com Sucesso!!");
+      
+        if (saldo >= valor) {
+            saldo -= valor;
+            System.out.println("Saque efetuado com Sucesso!");
         } else {
             System.out.println("Saldo insuficiente para realizar o saque.");
         }
+
     }
+
+    private void rendimento(){
+        LocalDate dataAtual = LocalDate.now();
+        long dias = dataAbertura.until(dataAtual).getDays();
+        saldo += saldo * taxaRendimento * dias;
+    }
+    
 }

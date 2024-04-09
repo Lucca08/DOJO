@@ -1,17 +1,17 @@
 package com.example.DOJO.Contas;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import com.example.DOJO.Model.Conta;
 
 public class ContaPoupanca extends Conta {
     private final double depositoInicial = 50.00;
     private final double taxaRendimento = 0.05;
-    private Date dataAbertura;
+    private LocalDate dataAbertura;
 
     public ContaPoupanca(Long idConta, Long idUsuario) {
         super(idConta, idUsuario, 0); 
-        this.dataAbertura = new Date();
+        this.dataAbertura = LocalDate.now();
         this.saldo = depositoInicial; 
     }
 
@@ -37,8 +37,8 @@ public class ContaPoupanca extends Conta {
 
     public double consultarSaldo() {
         if (dataAbertura != null) {
-            Date dataAtual = new Date();
-            long diffEmDias = (dataAtual.getTime() - dataAbertura.getTime()) / (1000 * 60 * 60 * 24);
+            LocalDate dataAtual = LocalDate.now();
+            long diffEmDias = dataAbertura.until(dataAtual).getDays();
             double saldoAtualizado = saldo * Math.pow(1 + taxaRendimento, diffEmDias);
             return saldoAtualizado;
         } else {
