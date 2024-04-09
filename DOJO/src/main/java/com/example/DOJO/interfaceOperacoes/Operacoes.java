@@ -10,7 +10,7 @@ public interface Operacoes {
             System.out.println("Valor inválido");
         }
 
-        if (this.consultarSaldo < valor) {
+        if (this.consultarSaldo() < valor) {
             System.out.println("Saldo insuficiente");
         } else {
             this.saque(valor);
