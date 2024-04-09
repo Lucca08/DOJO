@@ -33,6 +33,14 @@ public class Usuario {
         }
     }
 
+    public double consultarSaldoTotaldasContas() {
+        double saldoTotal = 0;
+        for (Conta conta : contas){
+            saldoTotal += conta.consultarSaldo();
+        }
+        return saldoTotal;
+    }
+
     public String getNome() {
         return nome;
     }
