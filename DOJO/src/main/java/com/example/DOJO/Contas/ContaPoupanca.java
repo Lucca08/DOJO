@@ -16,7 +16,7 @@ public class ContaPoupanca extends Conta {
     }
 
     @Override
-    public void Deposito(double valor) {
+    public void deposito(double valor) {
         if (valor > depositoInicial) {
             saldo += valor;
             System.out.println("Depósito efetuado com sucesso!");
@@ -26,7 +26,7 @@ public class ContaPoupanca extends Conta {
     }
 
     @Override
-    public void Saque(double valor) {
+    public void saque(double valor) {
         if (saldo >= valor && saldo - valor >= 0) {
             saldo -= valor;
             System.out.println("Saque efetuado com sucesso!");

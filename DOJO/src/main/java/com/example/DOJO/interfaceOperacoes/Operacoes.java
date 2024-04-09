@@ -1,8 +1,8 @@
 package com.example.DOJO.interfaceOperacoes;
 
 public interface Operacoes {
-    void Deposito(double valor);
-    void Saque(double valor);
+    void deposito(double valor);
+    void saque(double valor);
     double consultarSaldo();
 
     

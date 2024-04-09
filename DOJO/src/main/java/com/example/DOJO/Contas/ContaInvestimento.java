@@ -16,14 +16,14 @@ public class ContaInvestimento extends Conta {
     }
 
     @Override
-    public void Deposito(double valor) {
+    public void deposito(double valor) {
         if (saldo == 0) {
             saldo = depositoInicial;
         }
     }
 
     @Override
-    public void Saque(double valor) {
+    public void saque(double valor) {
         if (dataAbertura == null) {
             System.out.println("A conta de investimento ainda não foi aberta.");
             return;

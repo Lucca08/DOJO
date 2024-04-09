@@ -19,7 +19,7 @@ public abstract class Conta implements Operacoes{
     }
 
     @Override
-    public void Deposito(double valor) {
+    public void deposito(double valor) {
         this.saldo += valor;
     }
     
