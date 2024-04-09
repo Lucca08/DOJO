@@ -1,9 +1,7 @@
 package com.example.DOJO.Contas;
 
 import java.time.LocalDate;
-import java.util.Date;
 
-import org.springframework.cglib.core.Local;
 
 import com.example.DOJO.Model.Conta;
 
@@ -22,6 +20,8 @@ public class ContaInvestimento extends Conta {
     public void deposito(double valor) {
         if (saldo == 0) {
             saldo = depositoInicial;
+        }else{
+            saldo += valor;
         }
     }
 
@@ -29,14 +29,9 @@ public class ContaInvestimento extends Conta {
     public void saque(double valor) {
         LocalDate dataAtual = LocalDate.now();
         long dias = dataAbertura.until(dataAtual).getDays();
-        
-        if (dataAbertura == null) {
-            System.out.println("A conta de investimento ainda não foi aberta.");
-            return;
-        }
-
-        rendimento();
-
+    
+        rendimento(); 
+    
         if (dias < 1) {
             System.out.println("Não é possível sacar antes de 1 dia do primeiro depósito.");
             return;
@@ -48,13 +43,12 @@ public class ContaInvestimento extends Conta {
         } else {
             System.out.println("Saldo insuficiente para realizar o saque.");
         }
-
     }
+    
 
     private void rendimento(){
-        LocalDate dataAtual = LocalDate.now();
-        long dias = dataAbertura.until(dataAtual).getDays();
-        saldo += saldo * taxaRendimento * dias;
+      double rendimento = saldo * taxaRendimento;
+      saldo += rendimento;
     }
     
 }
