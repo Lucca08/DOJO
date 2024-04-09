@@ -19,14 +19,14 @@ public class ContaInvestimento extends Conta {
     }
 
     @Override
-    public void Deposito(double valor) {
+    public void deposito(double valor) {
         if (saldo == 0) {
             saldo = depositoInicial;
         }
     }
 
     @Override
-    public void Saque(double valor) {
+    public void saque(double valor) {
         LocalDate dataAtual = LocalDate.now();
         long dias = dataAbertura.until(dataAtual).getDays();
 
