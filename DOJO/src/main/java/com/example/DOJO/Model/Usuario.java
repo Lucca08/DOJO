@@ -24,30 +24,6 @@ public class Usuario {
             System.out.println("O úsuario já tem o número máximo de contas");
         }
     }
-
-    public void deletarConta(Conta conta) {
-        if (contas.contains(conta)) {
-            contas.remove(conta);
-        } else {
-            System.out.println("Conta não encontrada");
-        }
-    }
-
-    public double consultarSaldoTotaldasContas() {
-        double saldoTotal = 0;
-        for (Conta conta : contas){
-            saldoTotal += conta.consultarSaldo();
-        }
-        return saldoTotal;
-    }
- 
-    public void adicionarConta(Conta conta) {
-        if (contas.size() < 3) {
-            contas.add(conta);
-        } else {
-            System.out.println("O úsuario já tem o número máximo de contas");
-        }
-    }
  
     public void deletarConta(Conta conta) {
         if (contas.contains(conta)) {

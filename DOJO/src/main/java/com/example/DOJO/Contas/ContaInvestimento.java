@@ -1,15 +1,8 @@
 package com.example.DOJO.Contas;
-<<<<<<< HEAD
 
 import java.time.LocalDate;
 
 
-=======
- 
-import java.time.LocalDate;
- 
- 
->>>>>>> pedro
 import com.example.DOJO.Model.Conta;
  
 public class ContaInvestimento extends Conta {
@@ -17,11 +10,6 @@ public class ContaInvestimento extends Conta {
     private final double depositoInicial = 1000;
     private final double taxaRendimento = 0.10;
     private LocalDate dataAbertura;
-<<<<<<< HEAD
-
-=======
- 
->>>>>>> pedro
     public ContaInvestimento(Long idConta, Long idUsuario, double saldo) {
         super(idConta, idUsuario, saldo);
         this.dataAbertura = LocalDate.now();
