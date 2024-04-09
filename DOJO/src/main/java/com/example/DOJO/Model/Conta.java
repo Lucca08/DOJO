@@ -10,12 +10,12 @@ public abstract class Conta implements Operacoes{
     public Conta(Long idConta, Long idUsuario, double saldo) {
         this.idConta = idConta;
         this.idUsuario = idUsuario;
-        this.saldo = 0;
+        this.saldo = saldo;
     }
 
     @Override
     public double consultarSaldo() {
-        return saldo;
+        return this.saldo;
     }
 
     @Override

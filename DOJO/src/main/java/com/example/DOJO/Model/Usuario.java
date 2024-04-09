@@ -40,6 +40,7 @@ public class Usuario {
         }
         return saldoTotal;
     }
+    
  
     public String getNome() {
         return nome;
@@ -50,6 +51,10 @@ public class Usuario {
     }
     public Long getIdDaConta() {
         return idDaConta;
+    }
+
+    public List<Conta> getContas() {
+        return contas;
     }
 
 }

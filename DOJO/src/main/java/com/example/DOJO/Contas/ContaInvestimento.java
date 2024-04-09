@@ -10,6 +10,7 @@ public class ContaInvestimento extends Conta {
     private final double depositoInicial = 1000;
     private final double taxaRendimento = 0.10;
     private LocalDate dataAbertura;
+    
     public ContaInvestimento(Long idConta, Long idUsuario, double saldo) {
         super(idConta, idUsuario, saldo);
         this.dataAbertura = LocalDate.now();
