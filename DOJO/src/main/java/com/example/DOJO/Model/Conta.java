@@ -1,6 +1,8 @@
 package com.example.DOJO.Model;
 
-public abstract class Conta {
+import com.example.DOJO.interfaceOperacoes.Operacoes;
+
+public abstract class Conta implements Operacoes{
     private Long idConta;
     private Long idUsuario;
     protected double saldo;
@@ -8,15 +10,17 @@ public abstract class Conta {
     public Conta(Long idConta, Long idUsuario, double saldo) {
         this.idConta = idConta;
         this.idUsuario = idUsuario;
-        this.saldo = 0;
+        this.saldo = saldo;
     }
 
+    @Override
     public double consultarSaldo() {
-        return saldo;
+        return this.saldo;
     }
 
-    public abstract void Saque(double valor);
-
-    public abstract void Deposito(double valor);
+    @Override
+    public void deposito(double valor) {
+        this.saldo += valor;
+    }
     
 }

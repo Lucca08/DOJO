@@ -1,44 +1,60 @@
 package com.example.DOJO.Model;
 
-import com.example.DOJO.Contas.ContaCorrente;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Usuario {
     private String nome;
     private Long idDoUSuario;
-    private boolean temCC;
-    private boolean temCP;
-    private boolean temCI;
-    private Conta contaCorrente;
-    
-    
-    public Usuario(String nome, Long idDoUSuario, boolean temCC, boolean temCP, boolean temCI) {
+    private Long idDaConta;
+    private List<Conta> contas;
+   
+ 
+    public Usuario(String nome, Long idDoUSuario, Long idDaConta) {
         this.nome = nome;
         this.idDoUSuario = idDoUSuario;
-        this.temCC = false;
-        this.temCP = false;
-        this.temCI = false;
-        this.contaCorrente = new ContaCorrente(idDoUSuario, idDoUSuario, 0);
+        this.idDaConta = idDaConta;
+        this.contas = new ArrayList<>();
     }
 
+    public void adicionarConta(Conta conta) {
+        if (contas.size() < 3) {
+            contas.add(conta);
+        } else {
+            System.out.println("O úsuario já tem o número máximo de contas");
+        }
+    }
+ 
+    public void deletarConta(Conta conta) {
+        if (contas.contains(conta)) {
+            contas.remove(conta);
+        } else {
+            System.out.println("Conta não encontrada");
+        }
+    }
+ 
+    public double consultarSaldoTotaldasContas() {
+        double saldoTotal = 0;
+        for (Conta conta : contas){
+            saldoTotal += conta.consultarSaldo();
+        }
+        return saldoTotal;
+    }
+    
+ 
     public String getNome() {
         return nome;
     }
-
+ 
     public Long getIdDoUSuario() {
         return idDoUSuario;
     }
-
-    public boolean getTemCC() {
-        return temCC;
+    public Long getIdDaConta() {
+        return idDaConta;
     }
 
-    public boolean getTemCP() {
-        return temCP;
+    public List<Conta> getContas() {
+        return contas;
     }
-
-    public boolean getTemCI() {
-        return temCI;
-    }
-
 
 }
