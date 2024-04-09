@@ -27,8 +27,10 @@ public class ContaInvestimento extends Conta {
 
     @Override
     public void saque(double valor) {
-        LocalDate dataAtual = LocalDate.now();
-        long dias = dataAbertura.until(dataAtual).getDays();
+        if (dataAbertura == null) {
+            System.out.println("A conta de investimento ainda não foi aberta.");
+            return;
+        }
 
         rendimento();
 
