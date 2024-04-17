@@ -12,13 +12,19 @@ public interface Operacoes {
             System.out.println("Valor inválido");
         }
 
+        double saldoAtual = consultarSaldo();
+        if (saldoAtual < valor) {
+            System.out.println("Saldo insuficiente");
+            return;
+        }
+
         if (this.consultarSaldo() < valor) {
             System.out.println("Saldo insuficiente");
-        } else {
-            this.saque(valor);
-            contaDestino.deposito(valor);   
-        }
-    }
+            return;
+        } 
 
-        
+        this.saque(valor);
+        contaDestino.deposito(valor); 
+
+    }
 }
