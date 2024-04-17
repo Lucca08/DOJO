@@ -42,6 +42,7 @@ public class Usuario {
         }
         return saldoTotal;
     }
+    
  
     public String getNome() {
         return nome;

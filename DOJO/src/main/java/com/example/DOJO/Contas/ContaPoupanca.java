@@ -9,7 +9,7 @@ public class ContaPoupanca extends Conta {
     private final double taxaRendimento = 0.05;
     private LocalDate dataAbertura;
 
-    public ContaPoupanca(Long idConta, Long idUsuario) {
+    public ContaPoupanca(Long idConta, Long idUsuario, double saldo) {
         super(idConta, idUsuario, 0); 
         this.dataAbertura = LocalDate.now();
         this.saldo = depositoInicial; 
