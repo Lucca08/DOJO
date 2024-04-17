@@ -54,6 +54,10 @@ public class Usuario {
     public Long getIdDaConta() {
         return idDaConta;
     }
+    
+    public List<Conta> getContas() {
+        return contas;
+    }
 
     public void fecharConta(Conta conta){
         if (conta instanceof ContaCorrente){
