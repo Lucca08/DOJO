@@ -2,6 +2,8 @@ package com.example.DOJO.Model;
  
 import java.util.ArrayList;
 import java.util.List;
+
+import com.example.DOJO.Contas.ContaCorrente;
  
 public class Usuario {
     private String nome;
@@ -54,30 +56,24 @@ public class Usuario {
     }
 
     public void fecharConta(Conta conta){
-        if (conta.ContaCorrente){
+        if (conta instanceof ContaCorrente){
             System.out.println("Conta corrente não pode ser fechada");
         } 
         if (contas.contains(conta)) {
             double saldoConta = conta.consultarSaldo();
             if (saldoConta > 0) {
                 for (Conta c : contas) {
-                    if (c.ContaCorrente){
-                        c.depositar(saldoConta);
+                    if (c instanceof ContaCorrente){
+                        c.deposito(saldoConta);
                         System.out.println("Saldo da conta transferido para a conta corrente");
-                        contas.remove(conta);
-                        System.out.println("Conta foi fechada");
-                        return;
+                        break;
                     }
                 }
-                System.out.println("Não tem conta corrente para usuário"); 
-                else {
-                    contas.remove(conta);
-                    System.out.println("Conta fechada");
-                }
-                else {
-                    System.out.println("Conta não foi encontrada");
-                }
             }
+            contas.remove(conta);
+            System.out.println("Conta fechada com sucesso");
+        } else {
+            System.out.println("Conta não encontrada");
         }
     }
 }
