@@ -1,7 +1,7 @@
 package com.example.DOJO.TesteUsuario;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,12 +34,26 @@ public class UsuarioTest {
     }
 
     @Test
+    public void testAdicionarConta_erro() {
+        usuario.adicionarConta(conta1);
+        usuario.adicionarConta(conta1);
+        assertNotEquals(1, usuario.getContas().size());
+    }
+
+    @Test
     public void testDeletarConta() {
         usuario.adicionarConta(conta1);
         usuario.deletarConta(conta1);
         assertEquals(0, usuario.getContas().size());
     }
 
+    @Test
+    public void testDeletarConta_erro() {
+        usuario.adicionarConta(conta1);
+        usuario.deletarConta(conta1);
+        assertNotEquals(1, usuario.getContas().size());
+    }
+    
     @Test
     public void testLimiteMaximoDeContas() {
         usuario.adicionarConta(conta1);
@@ -49,7 +63,31 @@ public class UsuarioTest {
         usuario.adicionarConta(conta4); 
         assertEquals(3, usuario.getContas().size());
     
+   }
+
+   @Test
+   public void testLimiteMaximoDeContas_erro() {
+       usuario.adicionarConta(conta1);
+       usuario.adicionarConta(conta2);
+       usuario.adicionarConta(conta3);
+       Conta conta4 = new ContaCorrente(4L, usuario.getIdDoUSuario(), 4000);
+       usuario.adicionarConta(conta4); 
+       assertNotEquals(4, usuario.getContas().size());
     }
 
+    @Test
+    public void testGetSaldoTotal() {
+        usuario.adicionarConta(conta1);
+        usuario.adicionarConta(conta2);
+        usuario.adicionarConta(conta3);
+        assertEquals(7000, usuario.consultarSaldoTotaldasContas());
+    }
 
+    @Test
+    public void testConsultarSaldoErro() {
+        usuario.adicionarConta(conta1);
+        usuario.adicionarConta(conta2);
+
+        assertNotEquals(1000, usuario.consultarSaldoTotaldasContas());
+    }
 }
