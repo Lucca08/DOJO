@@ -1,6 +1,7 @@
 package com.example.DOJO.Contas;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 import com.example.DOJO.Model.Conta;
 
@@ -12,12 +13,12 @@ public class ContaPoupanca extends Conta {
     public ContaPoupanca(Long idConta, Long idUsuario, double saldo) {
         super(idConta, idUsuario, 0); 
         this.dataAbertura = LocalDate.now();
-        this.saldo = depositoInicial; 
+        this.saldo = saldo; 
     }
 
     @Override
     public void deposito(double valor) {
-        if (valor > depositoInicial) {
+        if (valor >= 50.00) {
             saldo += valor;
             System.out.println("Depósito efetuado com sucesso!");
         } else {
@@ -38,7 +39,7 @@ public class ContaPoupanca extends Conta {
     public double consultarSaldo() {
         if (dataAbertura != null) {
             LocalDate dataAtual = LocalDate.now();
-            long diffEmDias = dataAbertura.until(dataAtual).getDays();
+            long diffEmDias = ChronoUnit.DAYS.between(dataAbertura, dataAtual);
             double saldoAtualizado = saldo * Math.pow(1 + taxaRendimento, diffEmDias);
             return saldoAtualizado;
         } else {
